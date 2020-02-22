@@ -19,7 +19,7 @@ var objects;
         // PUBLIC PROPERTIES
         // CONSTRUCTOR
         function Plane() {
-            var _this = _super.call(this, config.Game.ASSETS.getResult("plane"), 0, 0, true) || this;
+            var _this = _super.call(this, "plane", 0, 0, true) || this;
             _this.Start();
             return _this;
         }
@@ -46,8 +46,7 @@ var objects;
             this._move();
             this._checkBounds();
         };
-        Plane.prototype.Reset = function () {
-        };
+        Plane.prototype.Reset = function () { };
         return Plane;
     }(objects.GameObject));
     objects.Plane = Plane;

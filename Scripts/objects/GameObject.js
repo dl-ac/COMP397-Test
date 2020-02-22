@@ -17,12 +17,12 @@ var objects;
     var GameObject = /** @class */ (function (_super) {
         __extends(GameObject, _super);
         // CONSTRUCTOR
-        function GameObject(imageString, x, y, centered) {
-            if (imageString === void 0) { imageString = config.Game.ASSETS.getResult("placeholder"); }
+        function GameObject(imageId, x, y, centered) {
+            if (imageId === void 0) { imageId = "placeholder"; }
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
             if (centered === void 0) { centered = false; }
-            var _this = _super.call(this, imageString) || this;
+            var _this = _super.call(this, config.Game.ASSETS.getResult(imageId)) || this;
             // initialization
             _this._width = 0;
             _this._height = 0;

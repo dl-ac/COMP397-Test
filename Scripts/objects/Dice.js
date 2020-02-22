@@ -14,39 +14,28 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Ocean = /** @class */ (function (_super) {
-        __extends(Ocean, _super);
+    var Dice = /** @class */ (function (_super) {
+        __extends(Dice, _super);
         // PUBLIC PROPERTIES
         // CONSTRUCTOR
-        function Ocean() {
-            var _this = _super.call(this, "ocean") || this;
+        function Dice(x) {
+            if (x === void 0) { x = 180; }
+            var _this = _super.call(this, "diceBlank", x, config.Game.DICE_POS_Y, true) || this;
             _this.Start();
             return _this;
         }
         // PRIVATE METHODS
-        Ocean.prototype._checkBounds = function () {
-            if (this.y >= 0) {
-                this.Reset();
-            }
-        };
-        Ocean.prototype._move = function () {
-            this.position = objects.Vector2.add(this.position, this.velocity);
-        };
+        Dice.prototype._checkBounds = function () { };
+        Dice.prototype._move = function () { };
         // PUBLIC METHODS
-        Ocean.prototype.Start = function () {
-            this._verticalSpeed = 5; // 5 px per frame
-            this.velocity = new objects.Vector2(0, this._verticalSpeed);
-            this.Reset();
-        };
-        Ocean.prototype.Update = function () {
+        Dice.prototype.Start = function () { };
+        Dice.prototype.Update = function () {
             this._move();
             this._checkBounds();
         };
-        Ocean.prototype.Reset = function () {
-            this.position = new objects.Vector2(0, -960);
-        };
-        return Ocean;
+        Dice.prototype.Reset = function () { };
+        return Dice;
     }(objects.GameObject));
-    objects.Ocean = Ocean;
+    objects.Dice = Dice;
 })(objects || (objects = {}));
-//# sourceMappingURL=Ocean.js.map
+//# sourceMappingURL=Dice.js.map

@@ -3,7 +3,7 @@
 //means -> self-executing anonymous function
 var Game = (function () {
     // variable declarations
-    var canvas = document.getElementsByTagName('canvas')[0];
+    var canvas = document.getElementsByTagName("canvas")[0];
     var stage;
     var currentSceneState;
     var currentScene;
@@ -15,7 +15,17 @@ var Game = (function () {
         { id: "nextButton", src: "./Assets/images/nextButton.png" },
         { id: "backButton", src: "./Assets/images/backButton.png" },
         { id: "ocean", src: "./Assets/images/ocean.gif" },
-        { id: "plane", src: "./Assets/images/plane.png" }
+        { id: "plane", src: "./Assets/images/plane.png" },
+        // Game Assets
+        { id: "startButton", src: "./Assets/images/startButton.png" },
+        { id: "rollButton", src: "./Assets/images/rollButton.png" },
+        { id: "diceBlank", src: "./Assets/images/blank.png" },
+        { id: "dice1", src: "./Assets/images/1.png" },
+        { id: "dice2", src: "./Assets/images/2.png" },
+        { id: "dice3", src: "./Assets/images/3.png" },
+        { id: "dice4", src: "./Assets/images/4.png" },
+        { id: "dice5", src: "./Assets/images/5.png" },
+        { id: "dice6", src: "./Assets/images/6.png" }
     ];
     function Preload() {
         assets = new createjs.LoadQueue(); // asset container
@@ -32,7 +42,7 @@ var Game = (function () {
         console.log("%c Game Started!", "color: blue; font-size: 20px; font-weight: bold;");
         stage = new createjs.Stage(canvas);
         createjs.Ticker.framerate = config.Game.FPS;
-        createjs.Ticker.on('tick', Update);
+        createjs.Ticker.on("tick", Update);
         stage.enableMouseOver(20);
         currentSceneState = scenes.State.NO_SCENE;
         config.Game.SCENE = scenes.State.START;
@@ -77,6 +87,6 @@ var Game = (function () {
         currentSceneState = config.Game.SCENE;
         stage.addChild(currentScene);
     }
-    window.addEventListener('load', Preload);
+    window.addEventListener("load", Preload);
 })();
 //# sourceMappingURL=game.js.map

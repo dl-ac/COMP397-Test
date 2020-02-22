@@ -17,20 +17,19 @@ var objects;
     var Button = /** @class */ (function (_super) {
         __extends(Button, _super);
         // constructor
-        function Button(imagePath, x, y, isCentered) {
-            if (imagePath === void 0) { imagePath = config.Game.ASSETS.getResult("button"); }
+        function Button(imageId, x, y, isCentered) {
+            if (imageId === void 0) { imageId = "button"; }
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
             if (isCentered === void 0) { isCentered = false; }
-            var _this = _super.call(this, imagePath, x, y, isCentered) || this;
+            var _this = _super.call(this, imageId, x, y, isCentered) || this;
             _this.on("mouseover", _this.MouseOver);
             _this.on("mouseout", _this.MouseOut);
             _this.Start();
             return _this;
         }
         // PRIVATE METHODS
-        Button.prototype._checkBounds = function () {
-        };
+        Button.prototype._checkBounds = function () { };
         // PUBLIC METHODS
         Button.prototype.MouseOver = function () {
             this.alpha = 0.7;
@@ -46,10 +45,8 @@ var objects;
         Button.prototype.Start = function () {
             this.name = "Button";
         };
-        Button.prototype.Update = function () {
-        };
-        Button.prototype.Reset = function () {
-        };
+        Button.prototype.Update = function () { };
+        Button.prototype.Reset = function () { };
         return Button;
     }(objects.GameObject));
     objects.Button = Button;
