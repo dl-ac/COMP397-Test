@@ -25,10 +25,12 @@ module objects {
     }
 
     // CONSTRUCTOR
-    constructor(x: number = 180, value: number) {
+    constructor(x: number = 180, value: number, scale: number = 1) {
       super("dice" + value.toString(), x, config.Game.DICE_POS_Y, true);
 
       this._diceValue = value;
+      this.scaleX = scale;
+      this.scaleY = scale;
 
       this.Start();
     }

@@ -11,13 +11,6 @@ let Game = (function() {
   let assets: createjs.LoadQueue;
 
   let assetManifest = [
-    { id: "button", src: "./Assets/images/button.png" },
-    { id: "placeholder", src: "./Assets/images/placeholder.png" },
-    { id: "startButton", src: "./Assets/images/startButton.png" },
-    { id: "nextButton", src: "./Assets/images/nextButton.png" },
-    { id: "backButton", src: "./Assets/images/backButton.png" },
-    { id: "ocean", src: "./Assets/images/ocean.gif" },
-    { id: "plane", src: "./Assets/images/plane.png" },
     // Game Assets
     { id: "startButton", src: "./Assets/images/startButton.png" },
     { id: "rollButton", src: "./Assets/images/rollButton.png" },
@@ -27,7 +20,8 @@ let Game = (function() {
     { id: "dice3", src: "./Assets/images/3.png" },
     { id: "dice4", src: "./Assets/images/4.png" },
     { id: "dice5", src: "./Assets/images/5.png" },
-    { id: "dice6", src: "./Assets/images/6.png" }
+    { id: "dice6", src: "./Assets/images/6.png" },
+    { id: "diceTable", src: "./Assets/images/background.jpg" }
   ];
 
   function Preload(): void {
@@ -91,9 +85,9 @@ let Game = (function() {
         console.log("switch to Play Scene");
         currentScene = new scenes.Play();
         break;
-      case scenes.State.END:
-        console.log("switch to End Scene");
-        currentScene = new scenes.End();
+      case scenes.State.PLAY_FOUR:
+        console.log("switch to Play Four Scene");
+        currentScene = new scenes.PlayFour();
         break;
     }
 

@@ -3,7 +3,7 @@ module scenes {
     NO_SCENE = -1,
     START,
     PLAY,
-    END,
+    PLAY_FOUR,
     NUM_OF_SCENES
   }
 }

@@ -27,10 +27,13 @@ var objects;
     var Dice = /** @class */ (function (_super) {
         __extends(Dice, _super);
         // CONSTRUCTOR
-        function Dice(x, value) {
+        function Dice(x, value, scale) {
             if (x === void 0) { x = 180; }
+            if (scale === void 0) { scale = 1; }
             var _this = _super.call(this, "dice" + value.toString(), x, config.Game.DICE_POS_Y, true) || this;
             _this._diceValue = value;
+            _this.scaleX = scale;
+            _this.scaleY = scale;
             _this.Start();
             return _this;
         }

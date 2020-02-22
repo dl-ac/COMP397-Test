@@ -31,6 +31,7 @@ var objects;
             _this.fontFamily = fontFamily;
             _this.fontColour = fontColour;
             _this.isCentered = isCentered;
+            _this._isCentered = isCentered;
             if (isCentered) {
                 _this.regX = _this.getBounds().width * 0.5;
                 _this.regY = _this.getMeasuredLineHeight() * 0.5;
@@ -42,8 +43,10 @@ var objects;
         // methods
         Label.prototype.setText = function (newText) {
             this.text = newText;
-            this.regX = this.getBounds().width * 0.5;
-            this.regY = this.getMeasuredLineHeight() * 0.5;
+            if (this._isCentered) {
+                this.regX = this.getBounds().width * 0.5;
+                this.regY = this.getMeasuredLineHeight() * 0.5;
+            }
         };
         return Label;
     }(createjs.Text));
