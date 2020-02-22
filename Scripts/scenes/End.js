@@ -31,14 +31,10 @@ var scenes;
             this._endLabel = new objects.Label("End Scene", "80px", "Consolas", "#FFFF00", 320, 180, true);
             // buttons
             this._backButton = new objects.Button("backButton", 320, 430, true);
-            this._ocean = new objects.Ocean();
             this.Main();
         };
-        End.prototype.Update = function () {
-            this._ocean.Update();
-        };
+        End.prototype.Update = function () { };
         End.prototype.Main = function () {
-            this.addChild(this._ocean);
             this.addChild(this._endLabel);
             this.addChild(this._backButton);
             this._backButton.on("click", function () {

@@ -14,6 +14,16 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
+    /**
+     * scenes/Play.ts - Main play scene
+     *
+     * Author: Ailton De Lima - 301018951
+     * Date: 2020-02-22
+     *
+     * @export
+     * @class Play
+     * @extends {objects.Scene}
+     */
     var Play = /** @class */ (function (_super) {
         __extends(Play, _super);
         // PUBLIC PROPERTIES
@@ -25,22 +35,13 @@ var scenes;
         }
         // PRIVATE METHODS
         /**
-         * Function to roll the dices
-         *
-         * @private
-         * @memberof Play
-         */
-        Play.prototype.RollDices = function () {
-            var dices = this.GetDicesResult();
-        };
-        /**
          * Roll each dice and get its result
          *
          * @private
          * @returns {number[]}
          * @memberof Play
          */
-        Play.prototype.GetDicesResult = function () {
+        Play.prototype._getDicesResult = function () {
             var result = new Array(config.Game.DICES_QTY);
             for (var iCt = 0; iCt < config.Game.DICES_QTY; iCt++) {
                 result[iCt] = Math.floor(Math.random() * 6 + 1);
@@ -52,29 +53,72 @@ var scenes;
         Play.prototype.Start = function () {
             var posX = 180;
             this._dices = new Array(config.Game.DICES_QTY);
-            this._dicesResult = new Array(config.Game.DICES_QTY);
+            this._dicesLabel = new Array(config.Game.DICES_QTY);
+            this._dicesResult = this._getDicesResult();
             // Set the play state
             this._playState = objects.PlayState.IDLE;
             // Create the Dices and Labels
             for (var iCt = 0; iCt < config.Game.DICES_QTY; iCt++) {
-                this._dices[iCt] = new objects.Dice(posX);
-                this._dicesResult[iCt] = new objects.Label("R", "24px", "Consolas", "#000", posX, config.Game.DICE_RESULT_POS_Y, true);
+                this._dices[iCt] = new objects.Dice(posX, this._dicesResult[iCt]);
+                this._dicesLabel[iCt] = new objects.Label(this._dicesResult[iCt].toString(), "24px", "Consolas", "#000", posX, config.Game.DICE_RESULT_POS_Y, true);
                 posX += 280;
             }
             this._rollButton = new objects.Button("rollButton", 320, 430, true);
             this.Main();
         };
+        /**
+         * Update the scene according to the current state
+         *
+         * @memberof Play
+         */
         Play.prototype.Update = function () {
             switch (this._playState) {
+                case objects.PlayState.REQUEST_ROLL:
+                    // Get the dices results
+                    this._dicesResult = this._getDicesResult();
+                    // Request each dice to roll and display the result, clean current result
+                    for (var iCt = 0; iCt < config.Game.DICES_QTY; iCt++) {
+                        this._dices[iCt].RollDice(this._dicesResult[iCt]);
+                        this._dicesLabel[iCt].setText(" ");
+                    }
+                    // Set the state to rolling
+                    this._playState = objects.PlayState.ROLLING;
+                    break;
+                case objects.PlayState.ROLLING:
+                    var stillRolling = false;
+                    for (var iCt = 0; iCt < config.Game.DICES_QTY; iCt++) {
+                        this._dices[iCt].Update();
+                        stillRolling = stillRolling || this._dices[iCt].isRolling;
+                    }
+                    if (!stillRolling) {
+                        this._playState = objects.PlayState.PROCESS_RESULTS;
+                    }
+                    break;
+                case objects.PlayState.PROCESS_RESULTS:
+                    for (var iCt = 0; iCt < config.Game.DICES_QTY; iCt++) {
+                        this._dicesLabel[iCt].setText(this._dicesResult[iCt].toString());
+                    }
+                    this._playState = objects.PlayState.IDLE;
+                    break;
             }
         };
+        /**
+         * Put the objects created on the screen
+         *
+         * @memberof Play
+         */
         Play.prototype.Main = function () {
+            var _this = this;
             for (var iCt = 0; iCt < config.Game.DICES_QTY; iCt++) {
                 this.addChild(this._dices[iCt]);
-                this.addChild(this._dicesResult[iCt]);
+                this.addChild(this._dicesLabel[iCt]);
             }
             this.addChild(this._rollButton);
-            this._rollButton.on("click", this.RollDices);
+            this._rollButton.on("click", function () {
+                if (_this._playState == objects.PlayState.IDLE) {
+                    _this._playState = objects.PlayState.REQUEST_ROLL;
+                }
+            });
         };
         return Play;
     }(objects.Scene));

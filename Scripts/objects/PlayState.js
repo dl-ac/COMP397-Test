@@ -1,6 +1,15 @@
 "use strict";
 var objects;
 (function (objects) {
+    /**
+     * objects/PlayState.ts - Enumeration to define the state of the game play
+     *
+     * Author: Ailton De Lima - 301018951
+     * Date: 2020-02-22
+     *
+     * @export
+     * @enum {number}
+     */
     var PlayState;
     (function (PlayState) {
         PlayState[PlayState["IDLE"] = 0] = "IDLE";

@@ -3,7 +3,6 @@ module scenes {
     // PRIVATE INSTANCE MEMBERS
     private _endLabel: objects.Label;
     private _backButton: objects.Button;
-    private _ocean: objects.Ocean;
 
     // PUBLIC PROPERTIES
 
@@ -25,17 +24,12 @@ module scenes {
       // buttons
       this._backButton = new objects.Button("backButton", 320, 430, true);
 
-      this._ocean = new objects.Ocean();
       this.Main();
     }
 
-    public Update(): void {
-      this._ocean.Update();
-    }
+    public Update(): void {}
 
     public Main(): void {
-      this.addChild(this._ocean);
-
       this.addChild(this._endLabel);
 
       this.addChild(this._backButton);

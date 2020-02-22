@@ -1,4 +1,15 @@
 module objects {
+  /**
+   * objects/GameObject.ts - Base class for each object created for the game
+   *
+   * Author: Ailton De Lima - 301018951
+   * Date: 2020-02-22
+   *
+   * @export
+   * @abstract
+   * @class GameObject
+   * @extends {createjs.Bitmap}
+   */
   export abstract class GameObject extends createjs.Bitmap {
     // PRIVATE INSTANCE MEMBERS
     private _width: number;

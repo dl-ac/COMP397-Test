@@ -14,6 +14,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
+    /**
+     * objects/GameObject.ts - Base class for each object created for the game
+     *
+     * Author: Ailton De Lima - 301018951
+     * Date: 2020-02-22
+     *
+     * @export
+     * @abstract
+     * @class GameObject
+     * @extends {createjs.Bitmap}
+     */
     var GameObject = /** @class */ (function (_super) {
         __extends(GameObject, _super);
         // CONSTRUCTOR
